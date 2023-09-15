@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Аналитика</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" th:href="@{/styles/main.css}" />
+    <link rel="stylesheet" th:href="@{/styles/services.css}" />
+</head>
+<body>
+<div class="wrapper">
+    <div class="background"></div>
+    <div th:insert="blocks/header :: header"></div>
+    <div class="main">
+        <div class="goods">
+            <div class="row">
+                <div class="main-container">
+                    <a href="/analytics/report">
+                        <div class="item__image report-image">
+                            <img th:src="@{images/report.jpg}" alt="">
+                        </div>
+                    </a>
+                    <div class="item__body">
+                        <div class="item__title">Аналитический отчёт</div>
+                        <div class="item__text">Формирование аналитического отчёта за определённый период для оценки работы склада с информацией о грузообороте, расходах, производительности труда, и коэффициенте оборачиваемости.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="main-container">
+                    <div class="item__body">
+                        <div class="item__title">Анализ доступного места</div>
+                        <div class="item__text">Формирование отчёта о количестве доступных ячеек, а также остаточной грузовместимости склада на текущий момент на основе информации об общем числе ячеек и вместимости склада.</div>
+                    </div>
+                    <a href="/analytics/space">
+                        <div class="item__image report-image">
+                            <img th:src="@{images/space.jpg}" alt="">
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="main-container">
+                    <a href="/analytics/expired">
+                        <div class="item__image report-image">
+                            <img th:src="@{images/expired.jpg}" alt="">
+                        </div>
+                    </a>
+                    <div class="item__body">
+                        <div class="item__title">Товары с истёкшим сроком хранения</div>
+                        <div class="item__text">Вывод полной информации о всех товарах с итёкшим сроком хранения в расчёте на текущую дату.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer" th:insert="blocks/footer :: footer"></div>
+</div>
+</body>
+</html>

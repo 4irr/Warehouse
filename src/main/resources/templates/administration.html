@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Администрирование</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" th:href="@{/styles/main.css}" />
+    <link rel="stylesheet" th:href="@{/styles/services.css}" />
+</head>
+<body>
+<div class="wrapper">
+    <div class="background"></div>
+    <div th:insert="blocks/header :: header"></div>
+    <div class="main">
+        <div class="goods">
+            <div class="row">
+                <div class="main-container">
+                    <a href="/administration/users">
+                        <div class="item__image report-image">
+                            <img th:src="@{images/users.png}" alt="">
+                        </div>
+                    </a>
+                    <div class="item__body">
+                        <div class="item__title">Пользователи</div>
+                        <div class="item__text">Просмотр информации о пользователях, редактирование и удаление учётных записей, блокировка и работа с правами доступа.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="main-container">
+                    <div class="item__body">
+                        <div class="item__title">Расчёт активности пользователей</div>
+                        <div class="item__text">Расчёт активности пользователей приложения на основе информации о выполнении функций добавления, редактирования, удаления информации.</div>
+                    </div>
+                    <a href="/administration/activity">
+                        <div class="item__image report-image">
+                            <img th:src="@{images/activity.png}" alt="">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer" th:insert="blocks/footer :: footer"></div>
+</div>
+</body>
+</html>

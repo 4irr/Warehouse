@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Контакты</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" th:href="@{/styles/main.css}" />
+</head>
+<body>
+<div class="wrapper">
+  <div class="background"></div>
+  <div th:insert="blocks/header :: header"></div>
+  <div class="main">
+    <div class="head">
+      <div class="main-container">
+        <h2 class="head__title">Warehouse</h2>
+        <p class="head__content">Данное приложение упростит ведение складского учёта для любого предприятия малого бизнеса.<br>Ведите учёт и анализируйте деятельность вашего склада.</p>
+        <div class="head__buttons">
+          <h2>Номера телефонов для связи</h2>
+          <p>+375 29 1234567</p>
+          <p>+375 44 7654321</p>
+        </div>
+      </div>
+    </div>
+    <div class="map">
+      <div class="main-container">
+        <h2 style="text-align: center; margin: 20px 0">Расположение склада</h2>
+        <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A285a3b23736b02e9732ad7a936ecaf37dbe3bc4d924b58f306e648ffa4c0023e&amp;width=1110&amp;height=500&amp;lang=ru_RU&amp;scroll=true"></script>
+      </div>
+    </div>
+    <script src="scripts/homeScript.js"></script>
+  </div>
+  <div id="footer" th:insert="blocks/footer :: footer"></div>
+</div>
+</body>
+</html>

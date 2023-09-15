@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Создание пик-листа</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/styles/main.css}"/>
+  <link rel="stylesheet" th:href="@{/styles/add.css}">
+</head>
+<body>
+<div class="wrapper">
+  <div class="background"></div>
+  <div th:insert="blocks/header :: header"></div>
+  <div class="main">
+    <div class="main-container">
+      <h1 class="title">Создание пик-листа</h1>
+      <form th:action="@{/services/pick-list}" method="post">
+        <div class="products">
+          <h3>Товары для отгрузки:</h3>
+          <div class="product" th:each="el : ${pickListProducts}">
+            <p th:text="'Id товара: ' + ${el.getProductId()}"/>
+          </div>
+          <div class="buttons" style="margin-top: 20px">
+            <a href="/services/pick-list/clear">Очистить</a><br>
+            <a class="button" style="margin: 10px 0 30px 0; display: inline-block;" href="/services/pick-list/add-product">Добавить товар</a>
+          </div>
+        </div>
+        <p class="text-success" th:if="${saved}" th:text="${saved}"/>
+        <button type="submit" style="margin-top: 10px" class="button">Сформировать пик-лист</button>
+      </form>
+    </div>
+  </div>
+  <div id="footer" th:insert="blocks/footer :: footer"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+</html>

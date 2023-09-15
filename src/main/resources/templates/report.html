@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Аналитический отчёт</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/styles/main.css}" />
+    <link rel="stylesheet" th:href="@{/styles/services.css}" />
+    <link rel="stylesheet" th:href="@{/styles/add.css}" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="background"></div>
+        <div th:insert="blocks/header :: header"></div>
+        <div class="main" style="background-color: #e4e4e4">
+            <div class="main-container d-flex flex-column justify-content-center" style="height: 100%">
+                <h2 style="margin: 0px 0 30px 0">Составление отчёта</h2>
+                <form th:action="@{/analytics/report}" method="post">
+                    <div class="field">
+                        <label>Дата начала периода:</label>
+                        <input type="date" name="from" class="form-control form-report" required autocomplete="off">
+                    </div>
+                    <div class="field">
+                        <label>Дата конца периода:</label>
+                        <input type="date" name="to" class="form-control form-report" required autocomplete="off">
+                    </div>
+                    <div class="field">
+                        <label>Затраты на организацию хранения грузов:</label>
+                        <input type="number" step="any" name="expenses1" class="form-control form-report" required autocomplete="off">
+                    </div>
+                    <div class="field">
+                        <label>Сумма административных расходов:</label>
+                        <input type="number" step="any" name="expenses2" class="form-control form-report" required autocomplete="off">
+                    </div>
+                    <div class="field">
+                        <label>Кол-во работников в периоде:</label>
+                        <input type="number" name="workers" class="form-control form-report" required autocomplete="off">
+                    </div>
+                    <div class="field">
+                        <label>Вместимость склада(в тоннах):</label>
+                        <input type="number" step="any" name="capacity" class="form-control form-report" required autocomplete="off">
+                    </div>
+                    <button class="button" type="submit">Рассчитать</button>
+                </form>
+                <p class="text-success my-3" th:if="${saved}" th:text="${saved}"/>
+            </div>
+        </div>
+        <div id="footer" th:insert="blocks/footer :: footer"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+</html>

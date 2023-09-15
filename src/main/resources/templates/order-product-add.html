@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Товары</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" th:href="@{/styles/main.css}" />
+  <link rel="stylesheet" th:href="@{/styles/info.css}">
+</head>
+<body>
+<div class="wrapper">
+  <div class="background"></div>
+  <div th:insert="blocks/header :: header"></div>
+  <div class="main">
+    <div class="main-container">
+      <div class="head-items">
+        <h1 class="title">Товары на складе</h1>
+      </div>
+      <span class="validationError" th:if="${error}" th:text="${error}"></span>
+      <div class="item" th:each="el : ${products}">
+        <h2 class="item-title" th:text="'Id товара: ' + ${el.getProductId()}"/>
+        <div class="item-wrapper">
+          <div class="item-content">
+            <p th:text="'Код партии товара: ' + ${el.getBatch().getBatchId()}"/>
+            <p th:text="'Название: ' + ${el.name}"/>
+            <p th:text="'Ячейка: ' + ${el.cell}"/>
+            <p th:text="'Цена: ' + ${el.price} + ' р.'"/>
+          </div>
+          <div class="item-buttons">
+            <form th:action="'/services/orders/add/add-product/' + ${el.productId}" method="post">
+              <button class="button" style="float: right;" type="submit">Добавить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="footer" th:insert="blocks/footer :: footer"></div>
+</div>
+</body>
+</html>

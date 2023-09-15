@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Партии</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" th:href="@{/styles/main.css}" />
+  <link rel="stylesheet" th:href="@{/styles/info.css}">
+</head>
+<body>
+<div class="wrapper">
+  <div class="background"></div>
+  <div th:insert="blocks/header :: header"></div>
+  <div class="main">
+    <div class="main-container">
+      <div class="head-items">
+        <h1 class="title">Ордеры на отгрузку</h1>
+        <a class="button" href="/services/orders/add">Добавить</a>
+      </div>
+      <div class="item" th:each="el : ${orders}">
+        <h2 class="item-title" th:text="'Id ордера: ' + ${el.orderId}"/>
+        <div class="item-wrapper">
+          <div class="item-content">
+            <p th:text="'Дата формирования: ' + ${el.date}"/>
+            <p th:text="'Id пользователя: ' + ${el.user.userID}"/>
+            <h3>Товары для отгрузки:</h3>
+            <div class="product" th:each="elem : ${el.getProducts()}">
+              <p th:text="'Id товара: ' + ${elem.getProductId()}"/>
+            </div>
+          </div>
+          <div class="item-buttons">
+            <a class="button" th:href="'/services/orders/' + ${el.getOrderId()} + '/edit'">Редактировать</a>
+            <form th:action="'/services/orders/' + ${el.getOrderId()} + '/remove'" method="post">
+              <button class="button" style="float: right;" type="submit">Удалить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="footer" th:insert="blocks/footer :: footer"></div>
+</div>
+</body>
+</html>

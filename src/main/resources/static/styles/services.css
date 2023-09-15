@@ -1,0 +1,16 @@
+.goods {
+    background-color: #e4e4e4;
+}
+
+.background {
+    height: 300px;
+}
+
+.row .main-container {
+    display: flex;
+    padding: 40px 0;
+}
+
+.row:nth-child(even) {
+    background-color: #f5f5f5;
+}

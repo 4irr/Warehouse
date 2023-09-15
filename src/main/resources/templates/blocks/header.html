@@ -1,0 +1,23 @@
+<div id="header" th:fragment="header">
+    <h2 id="logo"><i class='bx bxs-home-alt-2'></i>Warehouse</h2>
+    <div class="main-container">
+        <div class="content">
+            <nav class="navbar">
+                <a href="/home">Главная</a>
+                <a href="/services">Функции</a>
+                <a href="/contacts">Контакты</a>
+                <a href="/profile">Личный кабинет</a>
+            </nav>
+
+            <div class="find-out">
+                <form th:action="@{/search}" class="search-bar">
+                    <input type="text" name="value" autocomplete="off" placeholder="Поиск..."/>
+                    <button type="submit"><i class='bx bx-search-alt'></i></button>
+                </form>
+                <form id="out" method="POST" th:action="@{/logout}">
+                    <button type="submit">Выход <i class='bx bx-log-out'></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

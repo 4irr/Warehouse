@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Пользователи</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'/>
+    <link rel="stylesheet" th:href="@{/styles/main.css}" />
+    <link rel="stylesheet" th:href="@{/styles/info.css}"/>
+</head>
+<body>
+<div class="wrapper">
+  <div class="background"></div>
+  <div th:insert="blocks/header :: header"></div>
+  <div class="main">
+    <div class="main-container">
+      <div class="head-items">
+        <h1 class="title">Список учётных записей пользователей</h1>
+      </div>
+      <p class="validationError" th:if="${exists}" th:text="${exists}"/>
+      <div class="item" th:each="el : ${users}">
+        <h2 class="item-title" th:if="${el.role.equals('admin')}" th:text="'Статус: Администратор'"/>
+        <h2 class="item-title" th:if="${el.role.equals('user')}" th:text="'Статус: Работник'"/>
+        <h2 class="item-title" th:text="'Id пользователя: ' + ${el.getUserID()}"/>
+        <div class="item-wrapper">
+          <div class="item-content">
+            <p th:text="'Логин: ' + ${el.username}"/>
+            <p th:text="'Имя: ' + ${el.name}"/>
+            <p th:text="'Фамилия: ' + ${el.surname}"/>
+            <p th:text="'Email: ' + ${el.email}"/>
+            <p th:text="'Номер телефона: ' + ${el.telNum}"/>
+          </div>
+          <div class="item-buttons">
+            <a class="button" th:href="'/administration/users/' + ${el.userID} + '/edit'">Редактировать</a>
+            <a class="button" th:if="${el.isBlocked()}" th:href="'/administration/users/' + ${el.userID} + '/unblock'">Разблокировать</a>
+            <a class="button" th:if="${!el.isBlocked()}" th:href="'/administration/users/' + ${el.userID} + '/block'">Заблокировать</a>
+            <a class="button" th:if="${el.role.equals('admin')}" th:href="'/administration/users/' + ${el.userID} + '/downgrade'">Понизить статус</a>
+            <a class="button" th:if="${el.role.equals('user')}" th:href="'/administration/users/' + ${el.userID} + '/upgrade'">Повысить статус</a>
+            <form th:action="'/administration/users/' + ${el.userID} + '/remove'" method="post">
+              <button class="button" style="float: right;" type="submit">Удалить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="footer" th:insert="blocks/footer :: footer"></div>
+</div>
+</body>
+</html>

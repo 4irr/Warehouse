@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Редактирование учётной записи</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" th:href="@{/styles/main.css}"/>
+  <link rel="stylesheet" th:href="@{/styles/add.css}">
+</head>
+<body>
+<div class="wrapper">
+  <div class="background"></div>
+  <div th:insert="blocks/header :: header"></div>
+  <div class="main">
+    <div class="main-container">
+      <h1 class="title">Редактирование данных пользователя</h1>
+      <form th:action="'/administration/users/' + ${res.userID} + '/edit'" th:object="${res}" method="post">
+        <div class="field">
+          <label>Имя:</label>
+          <input type="text" th:field="*{name}" name="name" class="form-control" required autocomplete="off">
+        </div>
+        <div class="field">
+          <label>Фамилия:</label>
+          <input type="text" th:value="*{surname}" name="surname" class="form-control" required>
+        </div>
+        <div class="field">
+          <label>Email:</label>
+          <input type="email" th:value="*{email}" name="email" class="form-control" required>
+        </div>
+        <div class="field">
+          <label>Номер телефона:</label>
+          <input type="text" th:value="*{telNum}" name="telNum" class="form-control" required>
+        </div>
+        <span class="validationError" th:if="${error}" th:text="${error}"></span>
+        <button type="submit" style="margin-top: 10px" class="button">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <div id="footer" th:insert="blocks/footer :: footer"></div>
+</div>
+</body>
+</html>

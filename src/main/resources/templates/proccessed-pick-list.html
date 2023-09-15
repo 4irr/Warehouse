@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Пик-лист</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" th:href="@{/styles/main.css}"/>
+  <link rel="stylesheet" th:href="@{/styles/add.css}">
+</head>
+<body>
+<div class="wrapper">
+  <div class="background"></div>
+  <div th:insert="blocks/header :: header"></div>
+  <div class="main">
+    <div class="main-container">
+      <h1 class="title">Созданный пик-лист</h1>
+      <div class="table">
+        <div class="table-row" th:each="el : ${pickListProducts}">
+          <div class="product-info">
+            <h2 th:text="'Id товара: ' + ${el.productId}"/>
+            <p th:text="'Наименование товара: ' + ${el.name}"/>
+            <p th:text="'Номер ячейки: ' + ${el.cell}"/>
+          </div>
+        </div>
+      </div>
+      <form th:action="@{/services/pick-list/save}" method="post">
+        <button type="submit" style="margin-top: 10px" class="button">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <div id="footer" th:insert="blocks/footer :: footer"></div>
+</div>
+</body>
+</html>

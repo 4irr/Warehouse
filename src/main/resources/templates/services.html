@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Сервисы</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" th:href="@{/styles/main.css}" />
+    <link rel="stylesheet" th:href="@{/styles/services.css}" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="background"></div>
+        <div th:insert="blocks/header :: header"></div>
+        <div class="main">
+            <div class="goods">
+                <div class="row">
+                    <div class="main-container">
+                        <a href="/services/products">
+                            <div class="item__image">
+                                <img th:src="@{images/goods.jpg}" alt="">
+                            </div>
+                        </a>
+                        <div class="item__body">
+                            <div class="item__title">Товары</div>
+                            <div class="item__text">Добавление, редактирование, удаление данных о товарах, имеющихся на складе. Все виды операций, необходимые для эффективного ведения учёта товаров. Поиск и фильтрация товаров по определённым категориям.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="main-container">
+                        <div class="item__body">
+                            <div class="item__title">Партии</div>
+                            <div class="item__text">Работа с информацией о прибывших на склад партиях товаров. После заполнения информации о прибывшей на склад партии товаров необходимо составить соответствующие торговые операции прихода и размещения.</div>
+                        </div>
+                        <a href="/services/batches">
+                            <div class="item__image">
+                                <img th:src="@{images/batches.jpg}" alt="">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="main-container">
+                        <a href="/services/operations">
+                            <div class="item__image">
+                                <img th:src="@{images/operations.jpg}" alt="">
+                            </div>
+                        </a>
+                        <div class="item__body">
+                            <div class="item__title">Торговые операции</div>
+                            <div class="item__text">Составление и ведения учёта всех видов торговых операций, необходимых для работы склада предприятия малого бизнеса: прибытие партии товаров на склад, размещение партии на складе, отпуск в торговый зал.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="main-container">
+                        <div class="item__body">
+                            <div class="item__title">Ордера на отгрузку</div>
+                            <div class="item__text">Создание, просмотр и редактирование ордеров на отгрузку товаров. Ордер на отгрузку создаётся непосредственно перед заполнением информации о торговой операции отпуска товаров со склада в торговый зал.</div>
+                        </div>
+                        <a href="/services/orders">
+                            <div class="item__image">
+                                <img th:src="@{images/orders.jpg}" alt="">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="main-container">
+                        <a href="/services/pick-list">
+                            <div class="item__image">
+                                <img th:src="@{images/pick-list.jpg}" alt="">
+                            </div>
+                        </a>
+                        <div class="item__body">
+                            <div class="item__title">Пик-листы</div>
+                            <div class="item__text">Создание пик листов с информацией о товарах, необходимых для сбора, их id, а также соответствубщими номерами ячеек.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="main-container">
+                        <div class="item__body">
+                            <div class="item__title">Аналитические отчёты</div>
+                            <div class="item__text">Список сформированных за время работы пользователями всех аналитических отчётов с возможностью удаления.</div>
+                        </div>
+                        <a href="/services/reports">
+                            <div class="item__image">
+                                <img th:src="@{images/analytics.jpg}" alt="">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer" th:insert="blocks/footer :: footer"></div>
+    </div>
+</body>
+</html>

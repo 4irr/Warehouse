@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'/>
+    <link rel="stylesheet" th:href="@{/styles/log-reg.css}" />
+    <title>Авторизация</title>
+</head>
+<body>
+    <div class="header">
+        <nav class="navbar">
+            <a href="/">Главная</a>
+            <a href="/services">Функции</a>
+            <a href="/contacts">Контакты</a>
+            <a href="/profile">Личный кабинет</a>
+        </nav>
+
+        <form th:action="@{/search}" class="search-bar">
+            <input type="text" name="value" autocomplete="off" placeholder="Поиск..."/>
+            <button type="submit"><i class='bx bx-search-alt'></i></button>
+        </form>
+    </div>
+
+    <div class="background"></div>
+    <div class="main-container">
+        <div class="content">
+            <h2 class="logo"><i class='bx bxs-home-alt-2'></i>Warehouse</h2>
+            <div class="text-sci">
+                <h2>Добро пожаловать!<br/><span>В приложение складского учёта.</span></h2>
+                <p>Данное приложение предназначено для повышения качества ведения складского учёта.</p>
+            </div>
+        </div>
+
+        <div class="logreg-box">
+            <div class="form-box login">
+                <form th:action="@{/login}" method="post">
+                    <h2>Вход</h2>
+                    <div class="input-box">
+                        <span class="icon"><i class='bx bxs-user'></i></span>
+                        <input name="username" type="text" required="required" autocomplete="off"/>
+                        <label>Логин</label>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="icon"><i class='bx bxs-lock-alt' ></i></span>
+                        <input name="password" type="password" required="required" autocomplete="off"/>
+                        <label>Пароль</label>
+                    </div>
+
+                    <button type="submit" class="btn">Вход</button>
+
+                    <div class="login-register">
+                        <p>Хотите создать аккаунт? <a class="register-link">Регистрация</a></p>
+                    </div>
+                    <p class="isSuccess" th:if="${param.error}">Неверный логин или пароль!</p>
+                </form>
+            </div>
+
+            <div id="reg-box" class="form-box register">
+                <form th:action="@{/register}" th:object="${user}" method="post">
+                    <h2>Регистрация</h2>
+
+                    <div class="input-box">
+                        <span class="icon"><i class='bx bxs-user'></i></span>
+                        <input name="username" type="text" required="required" autocomplete="off"/>
+                        <label>Логин</label>
+                    </div>
+                    <span class="isSuccess" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"/>
+                    <div class="input-box">
+                        <span class="icon"><i class='bx bxs-lock-alt' ></i></span>
+                        <input name="password" type="password" required="required" autocomplete="off"/>
+                        <label>Пароль</label>
+                    </div>
+                    <span class="isSuccess" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"/>
+                    <div class="input-box">
+                        <span class="icon"><i class='bx bx-user-circle'></i></span>
+                        <input name="name" type="text" required="required" autocomplete="off"/>
+                        <label>Имя</label>
+                    </div>
+                    <span class="isSuccess" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"/>
+                    <div class="input-box">
+                        <span class="icon"><i class='bx bx-user-circle'></i></span>
+                        <input name="surname" type="text" required="required" autocomplete="off"/>
+                        <label>Фамилия</label>
+                    </div>
+                    <span class="isSuccess" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"/>
+                    <div class="input-box">
+                        <span class="icon"><i class='bx bxs-envelope'></i></span>
+                        <input name="email" type="email" required="required" autocomplete="off"/>
+                        <label>Email</label>
+                    </div>
+                    <span class="isSuccess" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"/>
+                    <div class="input-box">
+                        <span class="icon"><i class='bx bxs-phone-call'></i></span>
+                        <input name="telNum" type="text" required="required" autocomplete="off"/>
+                        <label>Номер телефона</label>
+                    </div>
+                    <span class="isSuccess" th:if="${#fields.hasErrors('telNum')}" th:errors="*{telNum}"/>
+                    <button type="submit" class="btn" style="margin-top: 20px">Зарегистироваться</button>
+
+                    <div class="login-register">
+                        <p>Уже есть акканут? <a class="login-link">Войти</a></p>
+                    </div>
+
+                    <p class="isSuccess" th:if="${exists}" th:text="${exists}"/>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/script.js"></script>
+</body>
+</html>

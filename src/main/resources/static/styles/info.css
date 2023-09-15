@@ -1,0 +1,92 @@
+.main {
+    background-color: #e4e4e4;
+}
+
+.background {
+    height: 300px;
+}
+
+.head-items {
+    margin: 40px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    display: inline-block;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.button {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #e4e4e4;
+}
+
+.button:active{
+    background-color: #020410;
+    color: #e4e4e4;
+}
+
+.item {
+    padding: 20px;
+    border-radius: 5px;
+    background-color: darkseagreen;
+    margin: 50px 0;
+}
+
+.item-title {
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+.item-wrapper {
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.item-wrapper .item-content p {
+    margin: 20px 0;
+}
+
+.item-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.validationError {
+    color: red;
+}
+
+.parameters {
+    margin-bottom: -40px;
+}
+
+.filter-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.filter-field input, select {
+    border: 1px solid black;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.dropdown-menu {
+    padding: 0 20px;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Добавление ордера</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" th:href="@{/styles/main.css}"/>
+  <link rel="stylesheet" th:href="@{/styles/add.css}">
+</head>
+<body>
+<div class="wrapper">
+  <div class="background"></div>
+  <div th:insert="blocks/header :: header"></div>
+  <div class="main">
+    <div class="main-container">
+      <h1 class="title">Добавление ордера</h1>
+      <span class="validationError" th:if="${error}" th:text="${error}"></span>
+      <form th:action="@{/services/orders/add}" th:object="${order}" method="post">
+        <div class="field">
+          <label>Дата формирования:</label>
+          <input type="date" name="date" class="form-control" required>
+        </div>
+        <div class="products">
+          <h3>Товары для отгрузки:</h3>
+          <div class="product" th:each="el : ${order.getProducts()}">
+            <p th:text="'Id товара: ' + ${el.getProductId()}"/>
+          </div>
+          <div class="buttons" style="margin-top: 20px">
+            <a href="/services/orders/add/clear">Очистить</a><br>
+            <a class="button" style="margin: 10px 0 30px 0; display: inline-block;" href="/services/orders/add/add-product">Добавить товар</a>
+          </div>
+        </div>
+        <button type="submit" style="margin-top: 10px" class="button">Добавить ордер</button>
+      </form>
+    </div>
+  </div>
+  <div id="footer" th:insert="blocks/footer :: footer"></div>
+</div>
+</body>
+</html>

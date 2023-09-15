@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" th:href="@{/styles/main.css}" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="background"></div>
+        <div th:insert="blocks/header :: header"></div>
+        <div class="main">
+            <div class="head">
+                <div class="main-container">
+                    <h2 class="head__title">Warehouse</h2>
+                    <p class="head__content">Данное приложение упростит ведение складского учёта для любого предприятия малого бизнеса.<br>Ведите учёт и анализируйте деятельность вашего склада.</p>
+                    <div class="head__buttons">
+                        <a class="head__button" href="/services">Сервисы приложения</a>
+                        <a class="head__button" href="/administration">Администрирование</a>
+                    </div>
+                </div>
+            </div>
+            <script src="scripts/homeScript.js"></script>
+            <div class="columns">
+                <div class="main-container">
+                    <div class="columns__title">Функционал</div>
+                    <div class="columns__row">
+                        <div class="columns__column">
+                            <div class="item">
+                                <div class="item__row">
+                                    <a href="/services/products">
+                                        <div class="item__image">
+                                            <img th:src="@{images/goods.jpg}" alt="">
+                                        </div>
+                                    </a>
+                                    <div class="item__body">
+                                        <div class="item__title">Товары</div>
+                                        <div class="item__text">Учёт данных о товарах, поступивших на склад. Составление и печать пик-листов.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="columns__column">
+                            <div class="item">
+                                <div class="item__row">
+                                    <a href="/services/batches">
+                                        <div class="item__image">
+                                            <img th:src="@{images/batches.jpg}" alt="">
+                                        </div>
+                                    </a>
+                                    <div class="item__body">
+                                        <div class="item__title">Партии</div>
+                                        <div class="item__text">Работа с информацией о партиях товаров. Учёт прибывших на склад партий.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="columns__column">
+                            <div class="item">
+                                <div class="item__row">
+                                    <a href="/services/operations">
+                                        <div class="item__image">
+                                            <img th:src="@{images/operations.jpg}" alt="">
+                                        </div>
+                                    </a>
+                                    <div class="item__body">
+                                        <div class="item__title">Операции</div>
+                                        <div class="item__text">Составление и учёт всех видов торговых операций по работе склада.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="columns__column">
+                            <div class="item">
+                                <div class="item__row">
+                                    <a href="/analytics">
+                                        <div class="item__image">
+                                            <img th:src="@{images/analytics.jpg}" alt="">
+                                        </div>
+                                    </a>
+                                    <div class="item__body">
+                                        <div class="item__title">Аналитика</div>
+                                        <div class="item__text">Составление отчётов по работе склада и технический анализ.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer" th:insert="blocks/footer :: footer"></div>
+    </div>
+</body>
+</html>

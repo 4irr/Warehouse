@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Операции</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/styles/main.css}" />
+  <link rel="stylesheet" th:href="@{/styles/info.css}">
+</head>
+<body>
+<div class="wrapper">
+  <div class="background"></div>
+  <div th:insert="blocks/header :: header"></div>
+  <div class="main">
+    <div class="main-container">
+      <div class="head-items">
+        <h1 class="title">Торговые операции</h1>
+        <a class="button" href="/services/operations/acceptance/add">Добавить операцию приёма</a>
+        <a class="button" href="/services/operations/placement/add">Добавить операцию размещения</a>
+        <a class="button" href="/services/operations/release/add">Добавить операцию отпуска</a>
+      </div>
+      <div class="parameters dropdown" style="margin-bottom: 30px">
+        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          Фильтры
+        </a>
+        <div class="dropdown-menu">
+          <form class="m-3" th:action="@{/services/operations/sort}">
+            <div class="filter-field">
+              <label>Тип: </label>
+              <select name="type" autocomplete="off" style="width: 200px; margin-left: 20px">
+                <option value="all">Все</option>
+                <option value="acceptance">Приём</option>
+                <option value="placement">Размещение</option>
+                <option value="release">Отпуск</option>
+              </select>
+            </div>
+            <div class="d-flex justify-content-between">
+              <label style="margin-right: 40px">Дата: </label>
+              <div>
+                <div class="d-flex justify-content-between">
+                  <label>По возрастанию </label>
+                  <input class="mx-2" name="date" type="radio" value="asc">
+                </div>
+                <div class="d-flex justify-content-between my-3">
+                  <label>По убыванию </label>
+                  <input class="mx-2" name="date" type="radio" value="desc">
+                </div>
+              </div>
+            </div>
+            <div style="margin-bottom: 30px">
+              <label style="margin-bottom: 20px">Дата: </label>
+              <div class="d-flex flex-column">
+                <div class="filter-field my-0">
+                  <label>От:</label>
+                  <input name="from" type="date" style="width: 180px; margin-left: 20px">
+                </div>
+                <div class="filter-field my-0 align-items-baseline">
+                  <label>До:</label>
+                  <input name="to" type="date" style="width: 180px; margin-left: 20px; margin-top: 20px">
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="btn my-2" style="border: 1px solid black">Применить</button>
+            </div>
+          </form>
+          <form style="margin: -15px 0 20px 0" class="mx-3" th:action="@{/services/operations/sort/clear}" method="post">
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="btn my-2" style="border: 1px solid black">Сбросить</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <h2 th:if="${acceptanceList.size() > 0}" th:text="'Операции приёма: '"/>
+      <div class="item" th:each="el : ${acceptanceList}">
+        <h2 class="item-title" th:text="'Тип операции: ' + ${el.operation.type}"/>
+        <h2 class="item-title" th:text="'Id операции: ' + ${el.acceptanceId}"/>
+        <div class="item-wrapper">
+          <div class="item-content">
+            <p th:text="'Дата: ' + ${el.operation.date.format(formatter)}"/>
+            <p th:text="'Id партии: ' + ${el.batch.batchId}"/>
+            <p th:text="'Id пользователя: ' + ${el.operation.user.userID}"/>
+            <p th:text="'Отправитель: ' + ${el.sender}"/>
+            <p th:text="'Цена партии: ' + ${el.price} + ' р.'"/>
+          </div>
+          <div class="item-buttons">
+            <a class="button" th:href="'/services/operations/acceptance/' + ${el.acceptanceId} + '/edit'">Редактировать</a>
+            <form th:action="'/services/operations/acceptance/' + ${el.acceptanceId} + '/remove'" method="post">
+              <button class="button" style="float: right;" type="submit">Удалить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <h2 th:if="${placementList.size() > 0}" th:text="'Операции размещения: '"/>
+      <div class="item" th:each="el : ${placementList}">
+        <h2 class="item-title" th:text="'Тип операции: ' + ${el.operation.type}"/>
+        <h2 class="item-title" th:text="'Id операции: ' + ${el.placementId}"/>
+        <div class="item-wrapper">
+          <div class="item-content">
+            <p th:text="'Дата: ' + ${el.operation.date.format(formatter)}"/>
+            <p th:text="'Id партии: ' + ${el.batch.batchId}"/>
+            <p th:text="'Id пользователя: ' + ${el.operation.user.userID}"/>
+          </div>
+          <div class="item-buttons">
+            <a class="button" th:href="'/services/operations/placement/' + ${el.placementId} + '/edit'">Редактировать</a>
+            <form th:action="'/services/operations/placement/' + ${el.placementId} + '/remove'" method="post">
+              <button class="button" style="float: right;" type="submit">Удалить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <h2 th:if="${releaseList.size() > 0}" th:text="'Операции отпуска: '"/>
+      <div class="item" th:each="el : ${releaseList}">
+        <h2 class="item-title" th:text="'Тип операции: ' + ${el.operation.type}"/>
+        <h2 class="item-title" th:text="'Id операции: ' + ${el.getReleaseId()}"/>
+        <div class="item-wrapper">
+          <div class="item-content">
+            <p th:text="'Дата: ' + ${el.operation.date.format(formatter)}"/>
+            <p th:text="'Id ордера: ' + ${el.order.orderId}"/>
+            <p th:text="'Id пользователя: ' + ${el.operation.user.userID}"/>
+          </div>
+          <div class="item-buttons">
+            <a class="button" th:href="'/services/operations/release/' + ${el.releaseId} + '/edit'">Редактировать</a>
+            <form th:action="'/services/operations/release/' + ${el.releaseId} + '/remove'" method="post">
+              <button class="button" style="float: right;" type="submit">Удалить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="footer" th:insert="blocks/footer :: footer"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+</html>
